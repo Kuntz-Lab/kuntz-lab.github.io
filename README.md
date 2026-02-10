@@ -1,2 +1,1 @@
-# kuntz-lab.github.io
-Kuntz Lab Website
+Alan's private repo for SoC faculty website.
