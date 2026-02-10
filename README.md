@@ -1,1 +1,1 @@
-Alan's private repo for SoC faculty website.
+Kuntz Lab Website
