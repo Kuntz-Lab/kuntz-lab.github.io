@@ -2599,4 +2599,9 @@ p.fugiat{
 	.services-grids-left-grid1-pos, .services-grids-left-grid3-pos {
 		left: 105%;
 	}
+	.bold-no-underline-black {
+  		color: black; /* Sets the text color to black */
+  		text-decoration: none; /* Removes the default underline */
+  		font-weight: bold; /* Makes the text bold */
+	}
 }
