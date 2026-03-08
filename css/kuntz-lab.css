@@ -250,6 +250,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--vu-black);
 }
 
+.bold-no-underline-black {
+  font-weight: 600;
+  color: var(--vu-black);
+  text-decoration: none;
+}
+
+.bold-no-underline-black:hover {
+  color: var(--vu-black);
+  text-decoration: underline;
+}
+
 .pub-item .pub-venue {
   font-style: italic;
   color: #666;
