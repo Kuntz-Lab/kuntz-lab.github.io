@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Handbook | Kuntz Lab</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Custom -->
+  <link href="css/kuntz-lab.css" rel="stylesheet">
+  <style>
+    .handbook-nav {
+      position: sticky;
+      top: 70px;
+      max-height: calc(100vh - 90px);
+      overflow-y: auto;
+    }
+    .handbook-nav .nav-link {
+      color: #555;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.75rem;
+      letter-spacing: 0.5px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .handbook-nav .nav-link:hover,
+    .handbook-nav .nav-link.active {
+      color: var(--vu-gold-dark);
+      border-left-color: var(--vu-gold);
+      background: transparent;
+    }
+    .handbook-nav .nav-section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+      padding: 0.75rem 0.75rem 0.2rem;
+    }
+    .handbook-section {
+      padding: 56px 0 24px;
+      scroll-margin-top: 80px;
+    }
+    .handbook-section h2 {
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--vu-black);
+      margin-bottom: 0.4rem;
+    }
+    .handbook-section h3 {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--vu-gold-dark);
+      margin: 2rem 0 0.75rem;
+      font-weight: 400;
+    }
+    .handbook-section ul {
+      padding-left: 1.25rem;
+    }
+    .handbook-section ul li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+    .handbook-section ul ul {
+      margin-top: 0.4rem;
+    }
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.45rem 0.75rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li input[type="checkbox"] {
+      margin-top: 0.25rem;
+      accent-color: var(--vu-gold-dark);
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+    .checklist-box {
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      background: #fff;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .checklist-box-header {
+      background: var(--vu-black);
+      color: var(--vu-gold);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.6rem 0.75rem;
+    }
+    .placeholder-badge {
+      display: inline-block;
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      font-size: 0.75rem;
+      border-radius: 3px;
+      padding: 0 0.4rem;
+      margin-left: 0.3rem;
+    }
+    .section-divider-handbook {
+      width: 40px;
+      height: 3px;
+      background: var(--vu-gold);
+      margin-bottom: 1.5rem;
+    }
+    .callout {
+      border-left: 4px solid var(--vu-gold);
+      background: var(--vu-gray);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .callout p { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Kuntz Lab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+          <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
+          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="prospective.html">Join Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#news">News</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page header -->
+  <div class="page-header-banner">
+    <div class="container">
+      <h2>Lab Handbook</h2>
+      <p>Kuntz Lab &nbsp;·&nbsp; Vanderbilt University</p>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="container py-5">
+    <div class="row g-5">
+
+      <!-- Sidebar nav -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <nav class="handbook-nav" id="handbookNav">
+          <div class="nav-section-label">Sections</div>
+          <a class="nav-link" href="#culture">Culture</a>
+          <a class="nav-link" href="#logistics">Getting Started</a>
+          <a class="nav-link" href="#research-process">Research Process</a>
+          <a class="nav-link" href="#meetings">Meetings</a>
+          <a class="nav-link" href="#career">Career Development</a>
+        </nav>
+      </div>
+
+      <!-- Content -->
+      <div class="col-lg-9">
+
+        <!-- 1. Culture -->
+        <section class="handbook-section" id="culture">
+          <h2>Welcome &amp; Lab Culture</h2>
+          <div class="section-divider-handbook"></div>
+
+          <h3>What We're Building and Why</h3>
+          <p>We work on surgical and interventional robotics because the problems are genuinely hard and the stakes are very real. Getting this right matters for patients, surgeons, and the future of medicine. We're motivated by impact, not publications as an end in themselves, but by doing work that's scientifically sound and actually moves the field.</p>
+
+          <h3>How We Work</h3>
+          <ul>
+            <li>We aren't trying to <em>win</em> science, we're trying to learn what is true and advance the science. That means following the evidence, reporting honestly, and valuing rigorous negative results as much as positive ones.</li>
+            <li>We pursue important problems purposely.</li>
+            <li>We care about each other as people, not just as researchers. Your life outside the lab matters, and we treat each other accordingly.</li>
+            <li>We communicate openly — about progress, about struggles, about disagreements. There are no surprises in 1:1s because problems surface before they become crises.</li>
+            <li>Intellectual honesty is non-negotiable. Failed experiments are reported, not buried; they're how we learn.</li>
+          </ul>
+
+          <h3>What Alan Expects</h3>
+          <ul>
+            <li>Proactive communication, don't wait for a meeting to surface a blocker.</li>
+            <li>Ownership of your project, you drive it, Alan advises.</li>
+            <li>Engagement with the broader lab:
+              <ul>
+                <li>Attend lab meetings and be genuinely present. Read the papers being discussed, ask questions, and engage with work outside your own project.</li>
+                <li>Read your labmates' drafts and give real feedback. We make each other's work better, a strategy central to the lab's success.</li>
+                <li>Share what you're learning, including failures and dead ends. A result that didn't work is worth telling the group about.</li>
+                <li>Invest in the people around you. This lab functions as a community, not a collection of parallel solo projects. This is by design. The knowledge, methods, and thinking we build together genuinely exceed what any of us could produce alone. Your colleagues' growth makes your work stronger, and yours makes theirs. This is not an empty platitude, it's something you'll experience when a labmate's offhand comment reshapes how you think about your own problem. We expect you to take it seriously.</li>
+              </ul>
+            </li>
+          </ul>
+
+          <h3>What You Can Expect from Alan</h3>
+          <ul>
+            <li>Honest, constructive feedback delivered with your growth in mind.</li>
+            <li>Active support for your career — job market, fellowships, conferences.</li>
+            <li>To be treated as a whole person, not just a research producer.</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- 2. Logistics -->
+        <section class="handbook-section" id="logistics">
+          <h2>Getting Started</h2>
+          <div class="section-divider-handbook"></div>
+
+          <h3>Before You Arrive</h3>
+          <ul>
+            <li>Accept your Slack invite and join KuntzLab — this is our primary communication tool.</li>
+            <li>Review this handbook.</li>
+            <li>Email Alan to confirm your start date and first week schedule.</li>
+          </ul>
+
+          <h3>First Week</h3>
+          <ul>
+            <li>1:1 with Alan — introduction, project overview, expectations.</li>
+            <li>Meet the lab — attend your first lab meeting.</li>
+            <li>Get set up on computing resources (see Access &amp; Accounts below).</li>
+            <li>Read the two or three papers most relevant to your project (Alan will send these).</li>
+          </ul>
+
+          <h3>Access &amp; Accounts</h3>
+          <p>Complete all of the following in your first week:</p>
+          <div class="checklist-box mb-4">
+            <div class="checklist-box-header">First-week checklist</div>
+            <ul class="checklist p-2 mb-0">
+              <li>
+                <input type="checkbox" id="chk1">
+                <label for="chk1">KuntzLab Slack — accept invite, join relevant channels</label>
+              </li>
+              <li>
+                <input type="checkbox" id="chk2">
+                <label for="chk2">GitHub — request access to the <a href="https://github.com/kuntz-lab" target="_blank" class="text-gold">kuntz-lab</a> organization from Alan</label>
+              </li>
+              <li>
+                <input type="checkbox" id="chk3">
+                <label for="chk3">Computing cluster — <span class="placeholder-badge">TBD</span> access instructions coming</label>
+              </li>
+              <li>
+                <input type="checkbox" id="chk4">
+                <label for="chk4">Building &amp; lab facilities access — <span class="placeholder-badge">TBD</span> contact your Vanderbilt ID coordinator</label>
+              </li>
+              <li>
+                <input type="checkbox" id="chk5">
+                <label for="chk5">VPN and Vanderbilt systems — set up if working remotely</label>
+              </li>
+              <li>
+                <input type="checkbox" id="chk6">
+                <label for="chk6">Required Vanderbilt trainings — <span class="placeholder-badge">TBD</span> confirm with Alan which apply to your role</label>
+              </li>
+              <li>
+                <input type="checkbox" id="chk7">
+                <label for="chk7">Lab calendar — confirm you can see the calendar</label>
+              </li>
+            </ul>
+          </div>
+
+          <h3>Slack Norms</h3>
+          <ul>
+            <li>Slack is the primary communication channel for the lab.</li>
+            <li>Expected response time: within one business day for direct messages.</li>
+            <li>Use public channels over DMs where possible, questions others can learn from should be visible.</li>
+            <li>Don't hesitate to message Alan directly; he prefers that over silence when there are issues.</li>
+          </ul>
+
+          <h3>Grant Acknowledgment</h3>
+          <div class="callout">
+            <p>All papers, posters, and presentations must acknowledge active grants. Before submitting anything, confirm with Alan which grants apply.</p>
+          </div>
+
+          <h3>Key Contacts</h3>
+          <ul>
+            <li>Grad coordinator — <span class="placeholder-badge">TBD</span></li>
+            <li>Grants administrator — <span class="placeholder-badge">TBD</span></li>
+            <li>Lab equipment contact — <span class="placeholder-badge">TBD</span></li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- 3. Research Process -->
+        <section class="handbook-section" id="research-process">
+          <h2>Research Process</h2>
+          <div class="section-divider-handbook"></div>
+
+          <h3>How Research Ideas Develop</h3>
+            <ul>
+              <li>Most PhD students join the lab with an initial project shaped by existing funding and ongoing research directions. This is a normal and practical starting point. It provides immediate traction and connects your work to the lab's broader goals.</li>
+              <li>That said, initial projects are a starting point, not a hard constraint. As you develop expertise and intuition, your research is expected to become increasingly self-directed. The transition from "working within a defined project" to "driving your own research agenda" is part of what a PhD is for, and Alan will expect and actively support it.</li>
+              <li>Bring half-formed ideas to 1:1s as they emerge, that's what these meetings are for.</li>
+              <li>We evaluate ideas against two questions: is the problem important, and can we make genuine progress on it? Both have to be true.</li>
+              <li>Expect iteration, most ideas get refined significantly before becoming projects.</li>
+            </ul> 
+
+          <h3>Starting a Project</h3>
+          <ul>
+            <li>Before writing any code or running any experiments, write a one-page problem statement: what is the question, why does it matter, what is the proposed approach, and how will we know if it worked.</li>
+            <li>Alan reviews and approves this before significant effort is invested. If you are working within a project led by a postdoc, the postdoc may serve as the primary approver for one-pagers and experimental plans. Confirm the approval chain with Alan at the start of your project.</li>
+            <li>Early conversations with relevant collaborators (internal and external) should happen before the approach is locked in.</li>
+          </ul>
+
+          <h3>Running Experiments</h3>
+          <ul>
+            <li>You are expected to maintain a research notebook — a running log of decisions made, experiments run, results observed, and what you concluded. This is not optional and not just for Alan's benefit; it's the single most important habit for doing research well. A result you can't reconstruct is a result you don't have.</li>
+            <li>Your notebook is the record of your scientific thinking. Write in it as you work, not after.</li>
+            <li>Negative results get logged and reported, not discarded.</li>
+            <li>Before scaling up an experiment, confirm the setup with Alan.</li>
+          </ul>
+
+          <h3>Writing Papers</h3>
+          <ul>
+            <li>Writing begins earlier than feels comfortable. An early draft clarifies thinking in ways that experiments alone don't.</li>
+            <li>Alan is a collaborator on writing, not just a final reviewer. Share drafts early and often.</li>
+            <li>All submissions require Alan's explicit approval before they go out.</li>
+            <li>All funding must be confirmed with Alan before submission (see Grant Acknowledgment above).</li>
+            <li>Target venues are discussed with Alan early, don't assume.</li>
+          </ul>
+
+          <h3>Authorship</h3>
+          <ul>
+            <li>Authorship is discussed early and often, not retroactively.</li>
+            <li>Contributions are recognized fairly. Raise concerns early if something feels off.</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- 4. Meetings -->
+        <section class="handbook-section" id="meetings">
+          <h2>Meetings</h2>
+          <div class="section-divider-handbook"></div>
+
+          <h3>1:1 with Alan</h3>
+          <ul>
+            <li>Every postdoc and PhD student has a regular weekly 1:1 with Alan. Masters and undergraduates may instead meet 1:1 weekly with a postdoc, and more infrequently with Alan, project depending.</li>
+            <li>Come prepared. Your 1:1 is not just a status report, it's a working conversation. Bring what you're stuck on, what you're deciding, and what you're thinking about next.</li>
+            <li>A simple example agenda format: what I worked on, what's blocking me, what I need from you.</li>
+            <li>If you have nothing to bring, that's a signal something is wrong, not an excuse to cancel.</li>
+            <li>1:1s are your time with Alan; use them.</li>
+          </ul>
+
+          <h3>Lab Meeting</h3>
+          <ul>
+            <li>Weekly, full group, attendance expected (in-person strongly preferred if possible, remote if not).</li>
+            <li>Every member prepares a single slide — no more. This is deliberate: the constraint forces clarity and prioritization, which are skills as important as the research itself.</li>
+            <li>Your slide must include a figure — data, a diagram, a result, something visual that represents what you're working on.</li>
+            <li>Your slide must also include something non-research related — an interesting fact, a community event, something happening in the world, or a personal update if you'd like. This is intentional: it keeps us connected to the broader world and to each other as whole people, not just as researchers.</li>
+            <li>When it's not your turn to present: engage. Ask questions, offer ideas. Passive attendance is not attendance.</li>
+          </ul>
+
+          <h3>Group Communication</h3>
+          <ul>
+            <li>Slack is the default channel for everything that doesn't require a meeting.</li>
+            <li>If something can be resolved asynchronously, resolve it asynchronously.</li>
+            <li>If you need a meeting, propose one. Don't wait for someone else to schedule it.</li>
+            <li>If you're stuck or blocked and your next 1:1 is days away, message Alan directly.</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- 5. Career Development -->
+        <section class="handbook-section" id="career">
+          <h2>Career Development</h2>
+          <div class="section-divider-handbook"></div>
+
+          <h3>For PhD Students</h3>
+          <ul>
+            <li>You and Alan will establish a clear dissertation timeline early — committee formation, proposal, and defense milestones are tracked and revisited regularly in 1:1s.</li>
+            <li>Unless you are fully committed to an academic career path, at least one summer internship during your PhD is <em>strongly</em> encouraged — industry and national lab experience makes you a stronger researcher and broadens your options.</li>
+            <li>Fellowships and awards are encouraged — Alan will actively support applications. Flag opportunities early so there's time to write something good.</li>
+            <li>Conference attendance is part of your training — present your work, meet the community, and come back with a broader view of the field.</li>
+            <li>When you're ready to go on the job market, Alan is an active participant in that process — letters, introductions, mock interviews, and honest advice about fit.</li>
+          </ul>
+
+          <h3>For Postdocs</h3>
+          <ul>
+            <li>Your goal is independence, not just productivity. We will identify early what your next position looks like and work backward from there.</li>
+            <li>You are expected to develop your own research vision alongside your lab responsibilities.</li>
+            <li>Alan will support you in building a publication record, a professional network, and grant writing experience appropriate to your next role.</li>
+            <li>If you are considering faculty positions, a startup, industry, or national labs — those are all valid paths and Alan will support them differently but equally seriously.</li>
+          </ul>
+
+          <h3>For Everyone</h3>
+          <ul>
+            <li>Talking openly about your career goals is encouraged, not awkward. Alan can't support what he doesn't know about.</li>
+            <li>Your development as a scientist and a professional is a shared responsibility, and one we take seriously.</li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5>Kuntz Lab</h5>
+          <p>Robotics research at Vanderbilt University, advancing motion planning and autonomous systems for healthcare applications.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <p class="mb-1"><i class="fas fa-envelope me-2" style="color:var(--vu-gold)"></i>alan.kuntz@vanderbilt.edu</p>
+          <p class="mb-1"><i class="fas fa-building me-2" style="color:var(--vu-gold)"></i>Office: FGH 374</p>
+          <p><i class="fas fa-map-marker-alt me-2" style="color:var(--vu-gold)"></i>Vanderbilt University<br>
+            <span style="margin-left:1.4rem">Nashville, TN 37235</span></p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="research.html">Research</a></li>
+            <li><a href="people.html">People</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="https://scholar.google.com/citations?user=7uZPiGoAAAAJ&hl=en" target="_blank">Google Scholar</a></li>
+            <li><a href="prospective.html">Join Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <p class="footer-bottom text-center mb-0">&copy; 2025 Kuntz Lab, Vanderbilt University</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Highlight active sidebar link on scroll
+    const sections = document.querySelectorAll('.handbook-section');
+    const navLinks = document.querySelectorAll('.handbook-nav .nav-link');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`.handbook-nav a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    // Persist checkboxes in localStorage
+    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+      const key = 'handbook_' + cb.id;
+      cb.checked = localStorage.getItem(key) === 'true';
+      cb.addEventListener('change', () => localStorage.setItem(key, cb.checked));
+    });
+  </script>
+</body>
+</html>
