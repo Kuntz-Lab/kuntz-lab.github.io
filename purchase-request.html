@@ -701,10 +701,11 @@
     return doc;
   }
 
-  // ── Open Outlook via mailto ────────────────────────────────────────────
+  // ── Open Outlook Web (Office 365) compose window ──────────────────────
   function openOutlookEmail(data) {
+    const to      = encodeURIComponent('yuanwen.ye@Vanderbilt.Edu');
     const subject = encodeURIComponent(`Purchase Request – ${data.projectName}`);
-    const body = encodeURIComponent(
+    const body    = encodeURIComponent(
 `Hi Yuanwen,
 
 Hope this email finds you well. I was wondering if you could place an order for the items listed in the purchase request attached with this email. The account/grant it should be charged to is included in the attached form.
@@ -713,8 +714,8 @@ Please let me know if you need any additional information from my end.
 
 Thanks!`
     );
-    const mailto = `mailto:yuanwen.ye@Vanderbilt.Edu?subject=${subject}&body=${body}`;
-    window.location.href = mailto;
+    const url = `https://outlook.office.com/mail/deeplink/compose?to=${to}&subject=${subject}&body=${body}`;
+    window.open(url, '_blank');
   }
 
   // ── Form submit handler ────────────────────────────────────────────────
