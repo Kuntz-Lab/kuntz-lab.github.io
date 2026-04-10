@@ -400,10 +400,10 @@
   //  "number" is the grant/account number (leave "" if unknown).
   // ═══════════════════════════════════════════════════════════════════════
   const PROJECTS = [
-    { name: "AARPA-ALISS",                     number: "" },
-    { name: "NSF-Liquid Metal",                number: "" },
-    { name: "Faculty Start Up",                number: "" },
-    { name: "FDF-Faculty Discretionary Funds", number: "" },
+    { name: "AARPA-ALISS",                     number: "TBD" },
+    { name: "NSF-Liquid Metal",                number: "TBD" },
+    { name: "Faculty Start Up",                number: "FF_300763" },
+    { name: "FDF-Faculty Discretionary Funds", number: "TBD" },
   ];
   // ═══════════════════════════════════════════════════════════════════════
 
@@ -420,9 +420,7 @@
   // Auto-fill project number when project is selected
   projectSelect.addEventListener('change', () => {
     const sel = projectSelect.selectedOptions[0];
-    if (sel && sel.dataset.number) {
-      document.getElementById('projectNumber').value = sel.dataset.number;
-    }
+    document.getElementById('projectNumber').value = (sel && sel.dataset.number) ? sel.dataset.number : '';
   });
 
   // ── Set today's date ───────────────────────────────────────────────────
@@ -476,16 +474,16 @@
   function updateTotals() {
     const rows = document.querySelectorAll('#itemsBody tr');
     let grandTotal = 0;
-    let totalItems = 0;
+    let totalQty   = 0;
     rows.forEach(row => {
       const qty   = parseFloat(row.querySelector('.qty-input')?.value)   || 0;
       const price = parseFloat(row.querySelector('.price-input')?.value) || 0;
       grandTotal += qty * price;
-      totalItems += qty;
+      totalQty   += qty;
     });
-    document.getElementById('grandTotal').textContent  = '$' + grandTotal.toFixed(2);
-    document.getElementById('totalAmount').value       = '$' + grandTotal.toFixed(2);
-    document.getElementById('totalItems').value        = totalItems > 0 ? totalItems : '';
+    document.getElementById('grandTotal').textContent = '$' + grandTotal.toFixed(2);
+    document.getElementById('totalAmount').value      = '$' + grandTotal.toFixed(2);
+    document.getElementById('totalItems').value       = totalQty;
   }
 
   // Start with 3 blank rows
