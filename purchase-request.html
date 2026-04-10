@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Request | Kuntz Lab</title>
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Custom -->
+  <link href="css/kuntz-lab.css" rel="stylesheet">
+
+  <style>
+    /* ── Form card ── */
+    .form-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-top: 3px solid var(--vu-gold);
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 2.5rem 2.5rem 2rem;
+    }
+    .form-section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .form-section-label:first-child { margin-top: 0; }
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #444;
+      margin-bottom: 0.3rem;
+    }
+    .form-control, .form-select {
+      font-size: 0.88rem;
+      border-radius: 3px;
+      border-color: #ddd;
+      color: #333;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--vu-gold);
+      box-shadow: 0 0 0 0.2rem rgba(206,184,136,0.25);
+    }
+    .form-control[readonly] {
+      background: var(--vu-gray);
+      color: #666;
+    }
+
+    /* ── Items table ── */
+    .items-table-wrap {
+      overflow-x: auto;
+    }
+    #itemsTable {
+      font-size: 0.83rem;
+      min-width: 700px;
+    }
+    #itemsTable thead th {
+      background: var(--vu-black);
+      color: var(--vu-gold);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      border: none;
+      padding: 0.6rem 0.75rem;
+    }
+    #itemsTable tbody tr:nth-child(even) { background: #fafafa; }
+    #itemsTable tbody td {
+      padding: 0.4rem 0.5rem;
+      vertical-align: middle;
+      border-color: #eee;
+    }
+    #itemsTable input {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 0.3rem 0.5rem;
+      width: 100%;
+      font-size: 0.82rem;
+      background: #fff;
+    }
+    #itemsTable input:focus {
+      border-color: var(--vu-gold);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(206,184,136,0.2);
+    }
+    #itemsTable .amount-cell {
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+      min-width: 70px;
+    }
+    .btn-remove-row {
+      background: none;
+      border: none;
+      color: #ccc;
+      padding: 0.2rem 0.4rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: color 0.15s;
+    }
+    .btn-remove-row:hover { color: #c0392b; }
+    .btn-add-row {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    /* ── Pre-approval radios ── */
+    .approval-option {
+      display: flex;
+      gap: 1rem;
+    }
+    .approval-option label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-size: 0.88rem;
+      padding: 0.5rem 1.25rem;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .approval-option input[type="radio"] { display: none; }
+    .approval-option input[type="radio"]:checked + label {
+      border-color: var(--vu-gold);
+      background: #fdf8ef;
+      color: var(--vu-gold-dark);
+      font-weight: 600;
+    }
+    .approval-option label:hover { border-color: var(--vu-gold); }
+
+    /* ── Compliance text ── */
+    .compliance-text {
+      font-size: 0.78rem;
+      color: #c0392b;
+      line-height: 1.6;
+      border-left: 3px solid #e74c3c;
+      background: #fff5f5;
+      padding: 0.75rem 1rem;
+      border-radius: 0 3px 3px 0;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Alerts ── */
+    .alert-no-approval {
+      border-left: 4px solid #e67e22;
+      background: #fef9f0;
+      color: #7d4e00;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.9rem;
+    }
+    .alert-success-submit {
+      border-left: 4px solid #27ae60;
+      background: #f0fef4;
+      color: #155724;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.9rem;
+    }
+
+    /* ── Submit button ── */
+    .btn-submit {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.75rem 2.5rem;
+      background: var(--vu-black);
+      border: 2px solid var(--vu-black);
+      color: var(--vu-gold);
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .btn-submit:hover {
+      background: var(--vu-gold);
+      border-color: var(--vu-gold);
+      color: var(--vu-black);
+    }
+    .required-star { color: #c0392b; }
+    .total-row td {
+      font-weight: 700;
+      font-family: 'Oswald', sans-serif;
+      background: #f5f5f5 !important;
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Kuntz Lab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="research.html">Research</a></li>
+          <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
+          <li class="nav-item"><a class="nav-link" href="publications.html">Publications</a></li>
+          <li class="nav-item"><a class="nav-link" href="prospective.html">Join Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#news">News</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page header ── -->
+  <div class="page-header-banner">
+    <div class="container">
+      <h2>Purchase Request</h2>
+      <p>Kuntz Lab &nbsp;·&nbsp; Vanderbilt University</p>
+    </div>
+  </div>
+
+  <!-- ── Main content ── -->
+  <div class="container py-5" style="max-width: 900px;">
+
+    <!-- Status messages (hidden by default) -->
+    <div id="alertNoApproval" class="alert alert-no-approval p-3 mb-4 d-none" role="alert">
+      <i class="fas fa-exclamation-triangle me-2"></i>
+      <strong>Approval required.</strong> Please reach out to Alan first to get approval, then come back and complete this form.
+    </div>
+    <div id="alertSuccess" class="alert alert-success-submit p-3 mb-4 d-none" role="alert">
+      <i class="fas fa-check-circle me-2"></i>
+      <strong>Form submitted!</strong> Your completed purchase request PDF has been downloaded.
+      An email draft has been opened in Outlook — please <strong>attach the downloaded PDF</strong> to that email before sending.
+    </div>
+    <div id="alertValidation" class="alert alert-danger p-3 mb-4 d-none" role="alert">
+      <i class="fas fa-times-circle me-2"></i>
+      <strong>Please fill in all required fields</strong> before submitting.
+    </div>
+
+    <div class="form-card">
+      <form id="purchaseForm" novalidate>
+
+        <!-- ── Requestor Info ── -->
+        <div class="form-section-label">Requestor Information</div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Requested By <span class="required-star">*</span></label>
+            <input type="text" class="form-control" id="requestedBy" required placeholder="Your name">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Today's Date</label>
+            <input type="text" class="form-control" id="todayDate" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">PI / Faculty Name <span class="required-star">*</span></label>
+            <input type="text" class="form-control" id="piName" value="Alan Kuntz" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Date Needed By <span class="required-star">*</span></label>
+            <input type="date" class="form-control" id="dateNeeded" required>
+          </div>
+        </div>
+
+        <!-- ── Project Info ── -->
+        <div class="form-section-label">Project Details</div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Project Name <span class="required-star">*</span></label>
+            <select class="form-select" id="projectName" required>
+              <option value="">— Select a project —</option>
+              <!-- Populated dynamically from PROJECTS config below -->
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Item Type <span class="required-star">*</span></label>
+            <input type="text" class="form-control" id="itemType" required placeholder="e.g. Lab supplies, Electronics">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Project Number</label>
+            <input type="text" class="form-control" id="projectNumber" placeholder="Grant / account number">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Vendor <span class="required-star">*</span></label>
+            <input type="text" class="form-control" id="vendor" required placeholder="Vendor name">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Total Items</label>
+            <input type="text" class="form-control" id="totalItems" readonly placeholder="Auto-calculated">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Total Order Amount</label>
+            <input type="text" class="form-control" id="totalAmount" readonly placeholder="Auto-calculated">
+          </div>
+        </div>
+
+        <!-- ── Explanation ── -->
+        <div class="form-section-label">Justification</div>
+        <div class="mb-4">
+          <label class="form-label">How does this purchase relate to your project? <span class="required-star">*</span></label>
+          <textarea class="form-control" id="justification" rows="3" required
+            placeholder="Briefly describe how these items will be used in your research..."></textarea>
+        </div>
+
+        <!-- ── Items Table ── -->
+        <div class="form-section-label">Order Items</div>
+        <div class="items-table-wrap mb-3">
+          <table class="table table-bordered" id="itemsTable">
+            <thead>
+              <tr>
+                <th style="width:40px;">#</th>
+                <th style="width:60px;">Qty</th>
+                <th style="width:100px;">Part #</th>
+                <th>Description</th>
+                <th style="width:160px;">Link</th>
+                <th style="width:85px;">Price ($)</th>
+                <th style="width:85px;">Amount ($)</th>
+                <th style="width:36px;"></th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody">
+              <!-- Rows added dynamically -->
+            </tbody>
+            <tfoot>
+              <tr class="total-row">
+                <td colspan="6" class="text-end pe-3">Total Order Amount:</td>
+                <td id="grandTotal" class="amount-cell">$0.00</td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <button type="button" class="btn btn-outline-secondary btn-add-row mb-4" onclick="addRow()">
+          <i class="fas fa-plus me-1"></i> Add Item
+        </button>
+
+        <!-- ── Pre-approval ── -->
+        <div class="form-section-label">Pre-Approval</div>
+        <div class="mb-4">
+          <label class="form-label d-block mb-2">
+            Has this purchase been pre-approved by Alan? <span class="required-star">*</span>
+          </label>
+          <div class="approval-option">
+            <span>
+              <input type="radio" name="approved" id="approvedYes" value="yes">
+              <label for="approvedYes"><i class="fas fa-check text-success me-1"></i> Yes, Alan has approved this</label>
+            </span>
+            <span>
+              <input type="radio" name="approved" id="approvedNo" value="no">
+              <label for="approvedNo"><i class="fas fa-times text-danger me-1"></i> No, not yet</label>
+            </span>
+          </div>
+        </div>
+
+        <!-- ── Compliance notice ── -->
+        <div class="compliance-text">
+          By submitting this form I am verifying that this charge is consistent with Vanderbilt Guidelines
+          and allowable according to applicable regulations: the project is active, the date of charge is
+          within the correct budget period, the account number is correct, prior authorization has been
+          obtained, and it is an allowable cost for the project.
+        </div>
+
+        <!-- ── Submit ── -->
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-submit">
+            <i class="fas fa-paper-plane me-2"></i>Submit Request
+          </button>
+        </div>
+
+      </form>
+    </div><!-- /form-card -->
+  </div><!-- /container -->
+
+  <!-- ── Footer ── -->
+  <footer style="background:var(--vu-black);color:rgba(255,255,255,0.45);font-size:0.8rem;text-align:center;padding:1.5rem 0;margin-top:3rem;">
+    Kuntz Lab &nbsp;·&nbsp; Vanderbilt University &nbsp;·&nbsp; Nashville, TN
+  </footer>
+
+  <!-- ── Scripts ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <script>
+  // ═══════════════════════════════════════════════════════════════════════
+  //  PROJECT CONFIGURATION
+  //  To add a project: add a new { name, number } object to this array.
+  //  To remove: delete the corresponding line.
+  //  "number" is the grant/account number (leave "" if unknown).
+  // ═══════════════════════════════════════════════════════════════════════
+  const PROJECTS = [
+    { name: "AARPA-ALISS",                     number: "" },
+    { name: "NSF-Liquid Metal",                number: "" },
+    { name: "Faculty Start Up",                number: "" },
+    { name: "FDF-Faculty Discretionary Funds", number: "" },
+  ];
+  // ═══════════════════════════════════════════════════════════════════════
+
+  // ── Populate project dropdown ──────────────────────────────────────────
+  const projectSelect = document.getElementById('projectName');
+  PROJECTS.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.name;
+    opt.textContent = p.name;
+    opt.dataset.number = p.number;
+    projectSelect.appendChild(opt);
+  });
+
+  // Auto-fill project number when project is selected
+  projectSelect.addEventListener('change', () => {
+    const sel = projectSelect.selectedOptions[0];
+    if (sel && sel.dataset.number) {
+      document.getElementById('projectNumber').value = sel.dataset.number;
+    }
+  });
+
+  // ── Set today's date ───────────────────────────────────────────────────
+  const today = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const todayStr = `${pad(today.getMonth()+1)}/${pad(today.getDate())}/${today.getFullYear()}`;
+  const todayISO = `${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
+  document.getElementById('todayDate').value = todayStr;
+
+  // ── Items table logic ──────────────────────────────────────────────────
+  let rowCount = 0;
+
+  function addRow() {
+    rowCount++;
+    const tbody = document.getElementById('itemsBody');
+    const tr = document.createElement('tr');
+    tr.id = `row-${rowCount}`;
+    tr.innerHTML = `
+      <td style="text-align:center;vertical-align:middle;color:#999;font-size:0.8rem;">${rowCount}</td>
+      <td><input type="number" min="0" step="1" placeholder="1" class="qty-input" data-row="${rowCount}" oninput="recalcRow(${rowCount})"></td>
+      <td><input type="text" placeholder="Part #" class="part-input"></td>
+      <td><input type="text" placeholder="Description" class="desc-input"></td>
+      <td><input type="url" placeholder="https://..." class="link-input"></td>
+      <td><input type="number" min="0" step="0.01" placeholder="0.00" class="price-input" data-row="${rowCount}" oninput="recalcRow(${rowCount})"></td>
+      <td class="amount-cell" id="amount-${rowCount}">$0.00</td>
+      <td style="text-align:center;vertical-align:middle;">
+        <button type="button" class="btn-remove-row" onclick="removeRow(${rowCount})" title="Remove row">
+          <i class="fas fa-times"></i>
+        </button>
+      </td>`;
+    tbody.appendChild(tr);
+    updateTotals();
+  }
+
+  function removeRow(id) {
+    const row = document.getElementById(`row-${id}`);
+    if (row) row.remove();
+    updateTotals();
+  }
+
+  function recalcRow(id) {
+    const row = document.getElementById(`row-${id}`);
+    if (!row) return;
+    const qty   = parseFloat(row.querySelector('.qty-input').value)   || 0;
+    const price = parseFloat(row.querySelector('.price-input').value) || 0;
+    const amt   = qty * price;
+    row.querySelector(`#amount-${id}`).textContent = '$' + amt.toFixed(2);
+    updateTotals();
+  }
+
+  function updateTotals() {
+    const rows = document.querySelectorAll('#itemsBody tr');
+    let grandTotal = 0;
+    let totalItems = 0;
+    rows.forEach(row => {
+      const qty   = parseFloat(row.querySelector('.qty-input')?.value)   || 0;
+      const price = parseFloat(row.querySelector('.price-input')?.value) || 0;
+      grandTotal += qty * price;
+      totalItems += qty;
+    });
+    document.getElementById('grandTotal').textContent  = '$' + grandTotal.toFixed(2);
+    document.getElementById('totalAmount').value       = '$' + grandTotal.toFixed(2);
+    document.getElementById('totalItems').value        = totalItems > 0 ? totalItems : '';
+  }
+
+  // Start with 3 blank rows
+  addRow(); addRow(); addRow();
+
+  // ── Helpers ────────────────────────────────────────────────────────────
+  function hideAlerts() {
+    ['alertNoApproval','alertSuccess','alertValidation'].forEach(id => {
+      document.getElementById(id).classList.add('d-none');
+    });
+  }
+
+  function showAlert(id) {
+    hideAlerts();
+    const el = document.getElementById(id);
+    el.classList.remove('d-none');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function getFormData() {
+    const rows = [];
+    document.querySelectorAll('#itemsBody tr').forEach((row, idx) => {
+      const qty   = row.querySelector('.qty-input')?.value   || '';
+      const part  = row.querySelector('.part-input')?.value  || '';
+      const desc  = row.querySelector('.desc-input')?.value  || '';
+      const link  = row.querySelector('.link-input')?.value  || '';
+      const price = row.querySelector('.price-input')?.value || '';
+      const amt   = (parseFloat(qty)||0) * (parseFloat(price)||0);
+      rows.push({ num: idx+1, qty, part, desc, link, price, amount: amt.toFixed(2) });
+    });
+    return {
+      requestedBy:   document.getElementById('requestedBy').value.trim(),
+      todayDate:     document.getElementById('todayDate').value,
+      piName:        document.getElementById('piName').value.trim(),
+      dateNeeded:    document.getElementById('dateNeeded').value,
+      projectName:   document.getElementById('projectName').value,
+      itemType:      document.getElementById('itemType').value.trim(),
+      projectNumber: document.getElementById('projectNumber').value.trim(),
+      vendor:        document.getElementById('vendor').value.trim(),
+      totalItems:    document.getElementById('totalItems').value,
+      totalAmount:   document.getElementById('totalAmount').value,
+      justification: document.getElementById('justification').value.trim(),
+      rows,
+    };
+  }
+
+  function validateForm(data) {
+    const approved = document.querySelector('input[name="approved"]:checked');
+    if (!approved) return false;
+    if (!data.requestedBy || !data.piName || !data.dateNeeded ||
+        !data.projectName || !data.itemType || !data.vendor || !data.justification) {
+      return false;
+    }
+    // At least one item row with a description
+    const hasItems = data.rows.some(r => r.desc.trim() !== '');
+    return hasItems;
+  }
+
+  // ── PDF Generation ─────────────────────────────────────────────────────
+  function generatePDF(data) {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+    const W = 612, ML = 45, MR = 45, contentW = W - ML - MR;
+    let y = 50;
+
+    // Title
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.setTextColor(26, 26, 26);
+    doc.text('KUNTZ LAB PURCHASE REQUEST FORM', W / 2, y, { align: 'center' });
+    y += 22;
+
+    // Gold underline
+    doc.setDrawColor(206, 184, 136);
+    doc.setLineWidth(2);
+    doc.line(ML, y, W - MR, y);
+    y += 16;
+
+    // Helper: label + value pair
+    const field = (label, value, x, yPos, w) => {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(7.5);
+      doc.setTextColor(100, 100, 100);
+      doc.text(label.toUpperCase(), x, yPos);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(30, 30, 30);
+      doc.text(value || '—', x, yPos + 11);
+      doc.setDrawColor(200, 200, 200);
+      doc.setLineWidth(0.5);
+      doc.line(x, yPos + 14, x + w, yPos + 14);
+    };
+
+    const colW = (contentW - 20) / 2;
+
+    // Row 1: Requested By | Today's Date
+    field('Requested By',   data.requestedBy, ML,           y, colW);
+    field("Today's Date",   data.todayDate,   ML+colW+20,   y, colW);
+    y += 30;
+
+    // Row 2: PI/Faculty Name | Date Needed By
+    const dateNeededFmt = data.dateNeeded
+      ? new Date(data.dateNeeded + 'T00:00:00').toLocaleDateString('en-US') : '—';
+    field('PI / Faculty Name', data.piName,       ML,         y, colW);
+    field('Date Needed By',    dateNeededFmt,     ML+colW+20, y, colW);
+    y += 30;
+
+    // Row 3: Project Name | Item Type
+    field('Project Name', data.projectName, ML,         y, colW);
+    field('Item Type',    data.itemType,    ML+colW+20, y, colW);
+    y += 30;
+
+    // Row 4: Project Number | Vendor
+    field('Project Number', data.projectNumber, ML,         y, colW);
+    field('Vendor',         data.vendor,        ML+colW+20, y, colW);
+    y += 30;
+
+    // Row 5: Total Items | Total Order Amount
+    field('Total Items',        data.totalItems,  ML,         y, colW);
+    field('Total Order Amount', data.totalAmount, ML+colW+20, y, colW);
+    y += 36;
+
+    // Justification box
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(100,100,100);
+    doc.text('PURCHASE JUSTIFICATION', ML, y);
+    y += 10;
+    doc.setDrawColor(200,200,200);
+    doc.setLineWidth(0.5);
+    doc.setFillColor(250,250,250);
+    doc.roundedRect(ML, y, contentW, 50, 2, 2, 'FD');
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(40,40,40);
+    const wrapped = doc.splitTextToSize(data.justification || '—', contentW - 16);
+    doc.text(wrapped, ML + 8, y + 14);
+    y += 60;
+
+    // Compliance text
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(7);
+    doc.setTextColor(180, 30, 30);
+    const compText = 'By signing this form I am verifying that this charge is consistent with Vanderbilt Guidelines and allowable according to applicable regulations: ' +
+      'The project is active, the date of charge is within the correct budget period, the account number is correct, prior authorization has been obtained, ' +
+      'and it is an allowable cost for the project.';
+    const compLines = doc.splitTextToSize(compText, contentW);
+    doc.text(compLines, ML, y);
+    y += compLines.length * 9 + 10;
+
+    // Faculty Approval
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(26,26,26);
+    doc.text('Faculty Approval:', ML, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Alan Kuntz', ML + 100, y);
+    doc.setDrawColor(80,80,80);
+    doc.setLineWidth(0.6);
+    doc.line(ML + 95, y + 3, ML + 95 + 200, y + 3);
+
+    doc.setFont('helvetica', 'bold');
+    doc.text('Date:', ML + 320, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(data.todayDate, ML + 345, y);
+    doc.line(ML + 340, y + 3, ML + 340 + 100, y + 3);
+    y += 22;
+
+    // Items table
+    const tableRows = data.rows
+      .filter(r => r.desc || r.qty || r.price)
+      .map(r => [
+        r.num,
+        r.qty,
+        r.part,
+        r.desc,
+        r.link,
+        r.price ? '$' + parseFloat(r.price).toFixed(2) : '',
+        r.amount ? '$' + parseFloat(r.amount).toFixed(2) : '',
+      ]);
+
+    // Ensure at least a few blank rows
+    while (tableRows.length < 6) tableRows.push(['','','','','','','']);
+
+    doc.autoTable({
+      startY: y,
+      head: [['#', 'Qty', 'Part #', 'Description', 'Link', 'Price', 'Amount']],
+      body: tableRows,
+      foot: [['', '', '', '', '', 'TOTAL:', data.totalAmount || '$0.00']],
+      margin: { left: ML, right: MR },
+      styles: { fontSize: 8, cellPadding: 4 },
+      headStyles: {
+        fillColor: [26, 26, 26],
+        textColor: [206, 184, 136],
+        fontStyle: 'bold',
+        fontSize: 8,
+      },
+      footStyles: {
+        fillColor: [245, 245, 245],
+        textColor: [26, 26, 26],
+        fontStyle: 'bold',
+      },
+      columnStyles: {
+        0: { cellWidth: 22 },
+        1: { cellWidth: 35 },
+        2: { cellWidth: 65 },
+        3: { cellWidth: 'auto' },
+        4: { cellWidth: 90 },
+        5: { cellWidth: 55 },
+        6: { cellWidth: 55 },
+      },
+      alternateRowStyles: { fillColor: [250, 250, 250] },
+    });
+
+    return doc;
+  }
+
+  // ── Open Outlook via mailto ────────────────────────────────────────────
+  function openOutlookEmail(data) {
+    const subject = encodeURIComponent(`Purchase Request – ${data.projectName}`);
+    const body = encodeURIComponent(
+`Hi Yuanwen,
+
+Hope this email finds you well. I was wondering if you could place an order for the items listed in the purchase request attached with this email. The account/grant it should be charged to is included in the attached form.
+
+Please let me know if you need any additional information from my end.
+
+Thanks!`
+    );
+    const mailto = `mailto:yuanwen.ye@Vanderbilt.Edu?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+  }
+
+  // ── Form submit handler ────────────────────────────────────────────────
+  document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    hideAlerts();
+
+    const approved = document.querySelector('input[name="approved"]:checked');
+
+    // No pre-approval selected at all
+    if (!approved) {
+      showAlert('alertValidation');
+      return;
+    }
+
+    // Not approved — show guidance message
+    if (approved.value === 'no') {
+      showAlert('alertNoApproval');
+      return;
+    }
+
+    // Approved — validate required fields
+    const data = getFormData();
+    if (!validateForm(data)) {
+      showAlert('alertValidation');
+      return;
+    }
+
+    // Generate and download PDF
+    const doc = generatePDF(data);
+    const filename = `PurchaseRequest_${data.projectName.replace(/\s+/g,'_')}_${todayISO}.pdf`;
+    doc.save(filename);
+
+    // Small delay so download starts before mailto redirect
+    setTimeout(() => {
+      openOutlookEmail(data);
+      showAlert('alertSuccess');
+    }, 600);
+  });
+  </script>
+
+</body>
+</html>
