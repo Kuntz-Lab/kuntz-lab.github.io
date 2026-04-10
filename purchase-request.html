@@ -378,57 +378,43 @@
     </div><!-- /form-card -->
   </div><!-- /container -->
 
-  <!-- ── Email Draft Modal ── -->
-  <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+  <!-- ── Next Steps Modal ── -->
+  <div class="modal fade" id="nextStepsModal" tabindex="-1" aria-labelledby="nextStepsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content" style="border-radius:4px;border-top:3px solid var(--vu-gold);">
         <div class="modal-header" style="background:var(--vu-black);">
-          <h5 class="modal-title" id="emailModalLabel" style="font-family:'Oswald',sans-serif;color:var(--vu-gold);letter-spacing:2px;font-weight:400;">
-            <i class="fas fa-envelope me-2"></i>Email Draft Ready
+          <h5 class="modal-title" id="nextStepsLabel" style="font-family:'Oswald',sans-serif;color:var(--vu-gold);letter-spacing:2px;font-weight:400;">
+            <i class="fas fa-check-circle me-2"></i>Form Downloaded
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body p-4">
-          <p class="text-muted mb-3" style="font-size:0.85rem;">
-            <i class="fas fa-file-pdf me-1 text-danger"></i>
-            Your purchase request PDF has been downloaded. Copy the email below, then open Outlook and paste it into a new message — attach the PDF before sending.
+          <p style="font-size:0.95rem;font-weight:600;margin-bottom:1rem;">Your purchase request PDF has been downloaded. Now email it to Yuanwen:</p>
+
+          <div style="background:#f8f8f6;border:1px solid #e5e5e5;border-left:4px solid var(--vu-gold);border-radius:0 4px 4px 0;padding:1rem 1.25rem;margin-bottom:1.25rem;">
+            <div class="mb-2"><span style="font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;">To</span><br>
+              <a href="mailto:yuanwen.ye@Vanderbilt.Edu" style="color:var(--vu-gold-dark);font-weight:600;">yuanwen.ye@Vanderbilt.Edu</a>
+            </div>
+            <div class="mb-2"><span style="font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;">Subject</span><br>
+              <span style="font-size:0.9rem;">Purchase Request – [Project Name]</span>
+            </div>
+            <div><span style="font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;">Body</span><br>
+              <span style="font-size:0.85rem;white-space:pre-line;color:#444;">Hi Yuanwen,
+
+Hope this email finds you well. I was wondering if you could place an order for the items listed in the purchase request attached with this email. The account/grant it should be charged to is included in the attached form.
+
+Please let me know if you need any additional information from my end.
+
+Thanks!</span>
+            </div>
+          </div>
+
+          <p style="font-size:0.82rem;color:#666;margin-bottom:0;">
+            <i class="fas fa-paperclip me-1"></i> Don't forget to <strong>attach the downloaded PDF</strong> before sending.
           </p>
-
-          <div class="mb-3">
-            <label class="form-label" style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#666;">To</label>
-            <div class="d-flex gap-2">
-              <input type="text" class="form-control form-control-sm" id="emailTo" readonly>
-              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="copyField('emailTo', this)" style="white-space:nowrap;font-size:0.75rem;">
-                <i class="fas fa-copy me-1"></i>Copy
-              </button>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#666;">Subject</label>
-            <div class="d-flex gap-2">
-              <input type="text" class="form-control form-control-sm" id="emailSubject" readonly>
-              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="copyField('emailSubject', this)" style="white-space:nowrap;font-size:0.75rem;">
-                <i class="fas fa-copy me-1"></i>Copy
-              </button>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label" style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#666;">Body</label>
-            <textarea class="form-control form-control-sm" id="emailBody" rows="7" readonly style="font-size:0.85rem;resize:none;"></textarea>
-            <div class="d-flex justify-content-end mt-1">
-              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="copyField('emailBody', this)" style="font-size:0.75rem;">
-                <i class="fas fa-copy me-1"></i>Copy Body
-              </button>
-            </div>
-          </div>
         </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-          <a id="openOutlookBtn" href="#" target="_blank" class="btn btn-submit" style="font-size:0.85rem;padding:0.5rem 1.5rem;">
-            <i class="fas fa-external-link-alt me-2"></i>Open Outlook &amp; Compose
-          </a>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-submit" data-bs-dismiss="modal" style="font-size:0.85rem;padding:0.5rem 1.5rem;">Got it</button>
         </div>
       </div>
     </div>
@@ -753,47 +739,6 @@
     return doc;
   }
 
-  // ── Populate and show email draft modal ───────────────────────────────
-  function showEmailModal(data) {
-    const to      = 'yuanwen.ye@Vanderbilt.Edu';
-    const subject = `Purchase Request – ${data.projectName}`;
-    const body    =
-`Hi Yuanwen,
-
-Hope this email finds you well. I was wondering if you could place an order for the items listed in the purchase request attached with this email. The account/grant it should be charged to is included in the attached form.
-
-Please let me know if you need any additional information from my end.
-
-Thanks!`;
-
-    document.getElementById('emailTo').value      = to;
-    document.getElementById('emailSubject').value = subject;
-    document.getElementById('emailBody').value    = body;
-
-    // Build compose URL — works when already authenticated via Vanderbilt SSO
-    const composeUrl = 'https://outlook.office.com/mail/deeplink/compose'
-      + '?to='      + encodeURIComponent(to)
-      + '&subject=' + encodeURIComponent(subject)
-      + '&body='    + encodeURIComponent(body);
-    document.getElementById('openOutlookBtn').href = composeUrl;
-
-    const modal = new bootstrap.Modal(document.getElementById('emailModal'));
-    modal.show();
-  }
-
-  // ── Copy field to clipboard ────────────────────────────────────────────
-  function copyField(fieldId, btn) {
-    const el = document.getElementById(fieldId);
-    navigator.clipboard.writeText(el.value).then(() => {
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
-      btn.classList.replace('btn-outline-secondary', 'btn-success');
-      setTimeout(() => {
-        btn.innerHTML = orig;
-        btn.classList.replace('btn-success', 'btn-outline-secondary');
-      }, 2000);
-    });
-  }
 
   // ── Validation — returns list of missing field labels ──────────────────
   function getMissingFields(data) {
@@ -841,8 +786,8 @@ Thanks!`;
     const filename = `PurchaseRequest_${data.projectName.replace(/\s+/g,'_')}_${todayISO}.pdf`;
     doc.save(filename);
 
-    // Show email draft modal after short delay so PDF download registers
-    setTimeout(() => showEmailModal(data), 400);
+    // Show next-steps modal after short delay so PDF download registers
+    setTimeout(() => new bootstrap.Modal(document.getElementById('nextStepsModal')).show(), 400);
   });
   </script>
 
