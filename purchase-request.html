@@ -396,7 +396,7 @@
               <a href="mailto:yuanwen.ye@Vanderbilt.Edu" style="color:var(--vu-gold-dark);font-weight:600;">yuanwen.ye@Vanderbilt.Edu</a>
             </div>
             <div class="mb-2"><span style="font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;">Subject</span><br>
-              <span style="font-size:0.9rem;">Purchase Request – [Project Name]</span>
+              <span style="font-size:0.9rem;">Purchase Request</span>
             </div>
             <div><span style="font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;">Body</span><br>
               <span style="font-size:0.85rem;white-space:pre-line;color:#444;">Hi Yuanwen,
@@ -414,7 +414,9 @@ Thanks!</span>
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-submit" data-bs-dismiss="modal" style="font-size:0.85rem;padding:0.5rem 1.5rem;">Got it</button>
+          <button type="button" id="downloadPdfBtn" class="btn btn-submit" style="font-size:0.85rem;padding:0.5rem 1.5rem;">
+            <i class="fas fa-download me-2"></i>Got it — Download PDF
+          </button>
         </div>
       </div>
     </div>
@@ -781,13 +783,17 @@ Thanks!</span>
       return;
     }
 
-    // Generate and download PDF
+    // Generate PDF (don't download yet)
     const doc = generatePDF(data);
     const filename = `PurchaseRequest_${data.projectName.replace(/\s+/g,'_')}_${todayISO}.pdf`;
-    doc.save(filename);
 
-    // Show next-steps modal after short delay so PDF download registers
-    setTimeout(() => new bootstrap.Modal(document.getElementById('nextStepsModal')).show(), 400);
+    // Show modal first — PDF downloads when user clicks the button
+    const modal = new bootstrap.Modal(document.getElementById('nextStepsModal'));
+    document.getElementById('downloadPdfBtn').onclick = () => {
+      doc.save(filename);
+      modal.hide();
+    };
+    modal.show();
   });
   </script>
 
