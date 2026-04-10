@@ -239,11 +239,6 @@
       <i class="fas fa-exclamation-triangle me-2"></i>
       <strong>Approval required.</strong> Please reach out to Alan first to get approval, then come back and complete this form.
     </div>
-    <div id="alertSuccess" class="alert alert-success-submit p-3 mb-4 d-none" role="alert">
-      <i class="fas fa-check-circle me-2"></i>
-      <strong>Form submitted!</strong> Your completed purchase request PDF has been downloaded.
-      An email draft has been opened in Outlook — please <strong>attach the downloaded PDF</strong> to that email before sending.
-    </div>
     <div id="alertValidation" class="alert alert-danger p-3 mb-4 d-none" role="alert">
       <i class="fas fa-times-circle me-2"></i>
       <strong>Please fill in the following required fields before submitting:</strong>
@@ -382,6 +377,62 @@
       </form>
     </div><!-- /form-card -->
   </div><!-- /container -->
+
+  <!-- ── Email Draft Modal ── -->
+  <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content" style="border-radius:4px;border-top:3px solid var(--vu-gold);">
+        <div class="modal-header" style="background:var(--vu-black);">
+          <h5 class="modal-title" id="emailModalLabel" style="font-family:'Oswald',sans-serif;color:var(--vu-gold);letter-spacing:2px;font-weight:400;">
+            <i class="fas fa-envelope me-2"></i>Email Draft Ready
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <p class="text-muted mb-3" style="font-size:0.85rem;">
+            <i class="fas fa-file-pdf me-1 text-danger"></i>
+            Your purchase request PDF has been downloaded. Copy the email below, then open Outlook and paste it into a new message — attach the PDF before sending.
+          </p>
+
+          <div class="mb-3">
+            <label class="form-label" style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#666;">To</label>
+            <div class="d-flex gap-2">
+              <input type="text" class="form-control form-control-sm" id="emailTo" readonly>
+              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="copyField('emailTo', this)" style="white-space:nowrap;font-size:0.75rem;">
+                <i class="fas fa-copy me-1"></i>Copy
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#666;">Subject</label>
+            <div class="d-flex gap-2">
+              <input type="text" class="form-control form-control-sm" id="emailSubject" readonly>
+              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="copyField('emailSubject', this)" style="white-space:nowrap;font-size:0.75rem;">
+                <i class="fas fa-copy me-1"></i>Copy
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" style="font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#666;">Body</label>
+            <textarea class="form-control form-control-sm" id="emailBody" rows="7" readonly style="font-size:0.85rem;resize:none;"></textarea>
+            <div class="d-flex justify-content-end mt-1">
+              <button type="button" class="btn btn-sm btn-outline-secondary" onclick="copyField('emailBody', this)" style="font-size:0.75rem;">
+                <i class="fas fa-copy me-1"></i>Copy Body
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="https://outlook.office.com/mail/" target="_blank" class="btn btn-submit" style="font-size:0.85rem;padding:0.5rem 1.5rem;">
+            <i class="fas fa-external-link-alt me-2"></i>Open Outlook
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Footer ── -->
   <footer style="background:var(--vu-black);color:rgba(255,255,255,0.45);font-size:0.8rem;text-align:center;padding:1.5rem 0;margin-top:3rem;">
@@ -702,22 +753,34 @@
     return doc;
   }
 
-  // ── Open Outlook Web (OWA) compose window ─────────────────────────────
-  function openOutlookEmail(data) {
-    const to      = encodeURIComponent('yuanwen.ye@Vanderbilt.Edu');
-    const subject = encodeURIComponent(`Purchase Request – ${data.projectName}`);
-    const body    = encodeURIComponent(
+  // ── Populate and show email draft modal ───────────────────────────────
+  function showEmailModal(data) {
+    document.getElementById('emailTo').value      = 'yuanwen.ye@Vanderbilt.Edu';
+    document.getElementById('emailSubject').value = `Purchase Request – ${data.projectName}`;
+    document.getElementById('emailBody').value    =
 `Hi Yuanwen,
 
 Hope this email finds you well. I was wondering if you could place an order for the items listed in the purchase request attached with this email. The account/grant it should be charged to is included in the attached form.
 
 Please let me know if you need any additional information from my end.
 
-Thanks!`
-    );
-    // OWA compose URL — preserves query params through Vanderbilt SSO redirect
-    const url = `https://outlook.office.com/owa/?rru=compose&to=${to}&subject=${subject}&body=${body}`;
-    window.open(url, '_blank');
+Thanks!`;
+    const modal = new bootstrap.Modal(document.getElementById('emailModal'));
+    modal.show();
+  }
+
+  // ── Copy field to clipboard ────────────────────────────────────────────
+  function copyField(fieldId, btn) {
+    const el = document.getElementById(fieldId);
+    navigator.clipboard.writeText(el.value).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
+      btn.classList.replace('btn-outline-secondary', 'btn-success');
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.classList.replace('btn-success', 'btn-outline-secondary');
+      }, 2000);
+    });
   }
 
   // ── Validation — returns list of missing field labels ──────────────────
@@ -766,11 +829,8 @@ Thanks!`
     const filename = `PurchaseRequest_${data.projectName.replace(/\s+/g,'_')}_${todayISO}.pdf`;
     doc.save(filename);
 
-    // Small delay so download starts before opening Outlook
-    setTimeout(() => {
-      openOutlookEmail(data);
-      showAlert('alertSuccess');
-    }, 600);
+    // Show email draft modal after short delay so PDF download registers
+    setTimeout(() => showEmailModal(data), 400);
   });
   </script>
 
