@@ -440,7 +440,7 @@
     tr.id = `row-${rowCount}`;
     tr.innerHTML = `
       <td style="text-align:center;vertical-align:middle;color:#999;font-size:0.8rem;">${rowCount}</td>
-      <td><input type="number" min="0" step="1" placeholder="1" class="qty-input" data-row="${rowCount}" oninput="recalcRow(${rowCount})"></td>
+      <td><input type="number" min="1" step="1" value="1" class="qty-input" data-row="${rowCount}" oninput="recalcRow(${rowCount})"></td>
       <td><input type="text" placeholder="Part #" class="part-input"></td>
       <td><input type="text" placeholder="Description" class="desc-input"></td>
       <td><input type="url" placeholder="https://..." class="link-input"></td>
