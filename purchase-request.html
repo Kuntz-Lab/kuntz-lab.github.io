@@ -426,8 +426,8 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="https://outlook.office.com/mail/" target="_blank" class="btn btn-submit" style="font-size:0.85rem;padding:0.5rem 1.5rem;">
-            <i class="fas fa-external-link-alt me-2"></i>Open Outlook
+          <a id="openOutlookBtn" href="#" target="_blank" class="btn btn-submit" style="font-size:0.85rem;padding:0.5rem 1.5rem;">
+            <i class="fas fa-external-link-alt me-2"></i>Open Outlook &amp; Compose
           </a>
         </div>
       </div>
@@ -755,9 +755,9 @@
 
   // ── Populate and show email draft modal ───────────────────────────────
   function showEmailModal(data) {
-    document.getElementById('emailTo').value      = 'yuanwen.ye@Vanderbilt.Edu';
-    document.getElementById('emailSubject').value = `Purchase Request – ${data.projectName}`;
-    document.getElementById('emailBody').value    =
+    const to      = 'yuanwen.ye@Vanderbilt.Edu';
+    const subject = `Purchase Request – ${data.projectName}`;
+    const body    =
 `Hi Yuanwen,
 
 Hope this email finds you well. I was wondering if you could place an order for the items listed in the purchase request attached with this email. The account/grant it should be charged to is included in the attached form.
@@ -765,6 +765,18 @@ Hope this email finds you well. I was wondering if you could place an order for 
 Please let me know if you need any additional information from my end.
 
 Thanks!`;
+
+    document.getElementById('emailTo').value      = to;
+    document.getElementById('emailSubject').value = subject;
+    document.getElementById('emailBody').value    = body;
+
+    // Build compose URL — works when already authenticated via Vanderbilt SSO
+    const composeUrl = 'https://outlook.office.com/mail/deeplink/compose'
+      + '?to='      + encodeURIComponent(to)
+      + '&subject=' + encodeURIComponent(subject)
+      + '&body='    + encodeURIComponent(body);
+    document.getElementById('openOutlookBtn').href = composeUrl;
+
     const modal = new bootstrap.Modal(document.getElementById('emailModal'));
     modal.show();
   }
