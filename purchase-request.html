@@ -246,7 +246,8 @@
     </div>
     <div id="alertValidation" class="alert alert-danger p-3 mb-4 d-none" role="alert">
       <i class="fas fa-times-circle me-2"></i>
-      <strong>Please fill in all required fields</strong> before submitting.
+      <strong>Please fill in the following required fields before submitting:</strong>
+      <ul id="missingFieldsList" class="mb-0 mt-2"></ul>
     </div>
 
     <div class="form-card">
@@ -701,7 +702,7 @@
     return doc;
   }
 
-  // ── Open Outlook Web (Office 365) compose window ──────────────────────
+  // ── Open Outlook Web (OWA) compose window ─────────────────────────────
   function openOutlookEmail(data) {
     const to      = encodeURIComponent('yuanwen.ye@Vanderbilt.Edu');
     const subject = encodeURIComponent(`Purchase Request – ${data.projectName}`);
@@ -714,8 +715,24 @@ Please let me know if you need any additional information from my end.
 
 Thanks!`
     );
-    const url = `https://outlook.office.com/mail/deeplink/compose?to=${to}&subject=${subject}&body=${body}`;
+    // OWA compose URL — preserves query params through Vanderbilt SSO redirect
+    const url = `https://outlook.office.com/owa/?rru=compose&to=${to}&subject=${subject}&body=${body}`;
     window.open(url, '_blank');
+  }
+
+  // ── Validation — returns list of missing field labels ──────────────────
+  function getMissingFields(data) {
+    const missing = [];
+    if (!data.requestedBy)  missing.push('Requested By');
+    if (!data.piName)       missing.push('PI / Faculty Name');
+    if (!data.dateNeeded)   missing.push('Date Needed By');
+    if (!data.projectName)  missing.push('Project Name');
+    if (!data.itemType)     missing.push('Item Type');
+    if (!data.vendor)       missing.push('Vendor');
+    if (!data.justification) missing.push('Purchase Justification');
+    const hasItems = data.rows.some(r => r.desc.trim() !== '');
+    if (!hasItems) missing.push('At least one item with a description in the Order Items table');
+    return missing;
   }
 
   // ── Form submit handler ────────────────────────────────────────────────
@@ -724,9 +741,16 @@ Thanks!`
     hideAlerts();
 
     const approved = document.querySelector('input[name="approved"]:checked');
+    const data = getFormData();
 
-    // No pre-approval selected at all
-    if (!approved) {
+    // Build missing fields list (always check, includes approval)
+    const missing = getMissingFields(data);
+    if (!approved) missing.push('Pre-approval by Alan (Yes / No)');
+
+    // Show missing fields if any
+    if (missing.length > 0) {
+      const list = document.getElementById('missingFieldsList');
+      list.innerHTML = missing.map(f => `<li>${f}</li>`).join('');
       showAlert('alertValidation');
       return;
     }
@@ -737,19 +761,12 @@ Thanks!`
       return;
     }
 
-    // Approved — validate required fields
-    const data = getFormData();
-    if (!validateForm(data)) {
-      showAlert('alertValidation');
-      return;
-    }
-
     // Generate and download PDF
     const doc = generatePDF(data);
     const filename = `PurchaseRequest_${data.projectName.replace(/\s+/g,'_')}_${todayISO}.pdf`;
     doc.save(filename);
 
-    // Small delay so download starts before mailto redirect
+    // Small delay so download starts before opening Outlook
     setTimeout(() => {
       openOutlookEmail(data);
       showAlert('alertSuccess');
