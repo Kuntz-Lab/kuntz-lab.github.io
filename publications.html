@@ -39,6 +39,14 @@
       margin-left: 6px;
       vertical-align: middle;
     }
+    .pub-awards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pub-awards .award-badge {
+      margin-left: 0;
+    }
     .pub-authors {
       font-size: 0.88rem;
       color: #555;
@@ -213,12 +221,17 @@
     <div class="pub-item">
       <p class="pub-title mb-1">Toward Autonomous Medical Robots: A Review of AI Guidance for Medical Motion Planning</p>
       <p class="pub-authors">Ron Alterovitz, Alan Kuntz</p>
-      <p class="pub-venue mb-0"><em>Annual Review of Control, Robotics, and Autonomous Systems</em>, Vol. 9, pp. 433–454, 2026</p>
+      <p class="pub-venue mb-1"><em>Annual Review of Control, Robotics, and Autonomous Systems</em>, Vol. 9, pp. 433–454, 2026</p>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-control-032024-024305" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
       <p class="pub-title mb-1">Open-H-Embodiment: A Large-Scale Dataset for Enabling Foundation Models in Medical Robotics</p>
-      <p class="pub-authors">Open-H-Embodiment Consortium: Nigel Nelson, Juo-Tung Chen, Jesse Haworth, et al. (200+ authors, including Alan Kuntz)</p>
+      <p class="pub-authors">Open-H-Embodiment Consortium: Nigel Nelson, Juo-Tung Chen, Jesse Haworth, et al. (200+ authors)</p>
       <p class="pub-venue mb-1"><em>arXiv preprint</em> arXiv:2604.21017, 2026</p>
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="https://arxiv.org/abs/2604.21017" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
@@ -230,25 +243,42 @@
     <div class="pub-item">
       <p class="pub-title mb-1">PushCVAE: Generative Autonomous Nonprehensile Surgical Retraction from Monocular Endoscopic Images</p>
       <p class="pub-authors">Tanner Watts, Susheela Sharma Stern, Alejandro O. Chara, Jesse F. d'Almeida, Joseph C. Liechty, Britton Jordan, Alan Kuntz</p>
-      <p class="pub-venue mb-0"><em>International Symposium on Medical Robotics (ISMR)</em>, pp. 22–29, 2026</p>
+      <p class="pub-venue mb-1"><em>International Symposium on Medical Robotics (ISMR)</em>, pp. 22–29, 2026</p>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://ieeexplore.ieee.org/document/11536258" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
       <p class="pub-title mb-1">A Supervised Autonomous Resection and Retraction Framework for Transurethral Enucleation of the Prostatic Median Lobe</p>
       <p class="pub-authors">Mariana E. Smith, Tanner Watts, Susheela Sharma Stern, Brendan Burkhart, Hao Li, Alejandro O. Chara, Nithesh Kumar, James Ferguson, Ayberk Acar, Jesse F. d'Almeida, Lauren Branscombe, Lauren Shepard, Ahmed Ghazi, Ipek Oguz, Jie Ying Wu, Robert J. Webster III, Axel Krieger, Alan Kuntz</p>
-      <p class="pub-venue mb-0"><em>International Symposium on Medical Robotics (ISMR)</em>, pp. 30–36, 2026
+      <p class="pub-venue mb-1"><em>International Symposium on Medical Robotics (ISMR)</em>, pp. 30–36, 2026</p>
+      <div class="pub-awards mt-1">
         <span class="award-badge">&#9733; Best Paper Finalist</span>
         <span class="award-badge">&#9733; Best Student Paper Finalist</span>
-      </p>
+      </div>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://ieeexplore.ieee.org/document/11536309" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
       <p class="pub-title mb-1">Needle-and-Thread Suturing with Concentric Tube Robots for Tracheal Stent Fixation</p>
       <p class="pub-authors">Jesse F. d'Almeida, Lauren Branscombe, Alejandro O. Chara, Susheela Sharma Stern, Fabien Maldonado, Alan Kuntz, Robert J. Webster III</p>
-      <p class="pub-venue mb-0"><em>International Symposium on Medical Robotics (ISMR)</em>, pp. 185–190, 2026
+      <p class="pub-venue mb-1"><em>International Symposium on Medical Robotics (ISMR)</em>, pp. 185–190, 2026</p>
+      <div class="pub-awards mt-1">
         <span class="award-badge">&#9733; Best Paper Finalist</span>
         <span class="award-badge">&#9733; Best Student Paper Finalist</span>
-      </p>
+      </div>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://ieeexplore.ieee.org/document/11536470" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
@@ -265,7 +295,12 @@
     <div class="pub-item">
       <p class="pub-title mb-1">Integrating Learned Retraction and Model-Based Resection Planning for Automated Central Airway Obstruction Removal</p>
       <p class="pub-authors">Tanner Watts, Mariana E. Smith, James Ferguson, Nural Yilmaz, Paul Maria Scheikl, Bao Thach, Brendan Burkhart, Tucker Hermans, Anton Deguet, Axel Krieger, Alan Kuntz</p>
-      <p class="pub-venue mb-0"><em>IEEE Transactions on Medical Robotics and Bionics</em>, Vol. 8, No. 1, pp. 188–197, 2026</p>
+      <p class="pub-venue mb-1"><em>IEEE Transactions on Medical Robotics and Bionics</em>, Vol. 8, No. 1, pp. 188–197, 2026</p>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://ieeexplore.ieee.org/document/11311139" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <!-- 2025 -->
@@ -274,13 +309,23 @@
     <div class="pub-item">
       <p class="pub-title mb-1">Medical Needles in the Hands of AI: Advancing Toward Autonomous Robotic Navigation</p>
       <p class="pub-authors">Ron Alterovitz, Janine Hoelscher, Alan Kuntz</p>
-      <p class="pub-venue mb-0"><em>Science Robotics</em>, Vol. 10, Issue 104, eadt1874, 2025</p>
+      <p class="pub-venue mb-1"><em>Science Robotics</em>, Vol. 10, Issue 104, eadt1874, 2025</p>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://www.science.org/doi/10.1126/scirobotics.adt1874" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
       <p class="pub-title mb-1">Autonomous Vision-Guided Resection of Central Airway Obstruction</p>
       <p class="pub-authors">Mariana E. Smith, Nural Yilmaz, Tanner Watts, Paul Maria Scheikl, Jiawei Ge, Anton Deguet, Alan Kuntz, Axel Krieger</p>
-      <p class="pub-venue mb-0"><em>Journal of Medical Robotics Research</em>, Vol. 10, No. 03n04, 2550008, 2025</p>
+      <p class="pub-venue mb-1"><em>Journal of Medical Robotics Research</em>, Vol. 10, No. 03n04, 2550008, 2025</p>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://www.worldscientific.com/doi/10.1142/S2424905X25500084" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
@@ -290,6 +335,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Thompson2025_JMRR.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://www.worldscientific.com/doi/10.1142/S2424905X25400021" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -311,7 +359,12 @@
     <div class="pub-item">
       <p class="pub-title mb-1">From Monocular Vision to Autonomous Action: Guiding Tumor Resection via 3D Reconstruction</p>
       <p class="pub-authors">Ayberk Acar, Mariana E. Smith, Lidia Al-Zogbi, Tanner Watts, Fangjie Li, Hao Li, Nural Yilmaz, Paul Maria Scheikl, Jesse F. d'Almeida, Susheela Sharma, Lauren Branscombe, Tayfun Efe Ertop, Robert J. Webster III, Ipek Oguz, Alan Kuntz, Axel Krieger, Jie Ying Wu</p>
-      <p class="pub-venue mb-0"><em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>, pp. 21714–21720, 2025</p>
+      <p class="pub-venue mb-1"><em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>, pp. 21714–21720, 2025</p>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://ieeexplore.ieee.org/document/11246413" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
@@ -321,6 +374,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Thompson2025_CoRL.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://proceedings.mlr.press/v305/thompson25a.html" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -370,6 +426,9 @@
         <a href="images/papers/Jordan2024_IROS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/10802506" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -380,6 +439,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Mizutani2024_WAFR.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://link.springer.com/chapter/10.1007/978-3-032-09967-9_6" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -428,19 +490,26 @@
         <a href="images/papers/Thompson2024_ISMR.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/10586133" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
     <div class="pub-item">
       <p class="pub-title mb-1">Reward Learning from Suboptimal Demonstrations with Applications in Surgical Electrocautery</p>
       <p class="pub-authors">Zohre Karimi, Shing-Hei Ho, Bao Thach, Alan Kuntz, Daniel S. Brown</p>
-      <p class="pub-venue mb-1"><em>International Symposium on Medical Robotics (ISMR)</em>, 2024
+      <p class="pub-venue mb-1"><em>International Symposium on Medical Robotics (ISMR)</em>, 2024</p>
+      <div class="pub-awards mt-1">
         <span class="award-badge">&#9733; Best Paper Finalist</span>
         <span class="award-badge">&#9733; Best Student Paper Finalist</span>
-      </p>
+      </div>
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/KarimiiHo2024_ISMR.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/10585785" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -453,6 +522,9 @@
         <a href="images/papers/ThachWatts2024_ICRA.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/10610109" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -463,6 +535,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Cho2024_ICRA.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/10610456" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -489,6 +564,9 @@
         <a href="images/papers/Esser2024_RoboSoft.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/10521936" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -500,13 +578,21 @@
         <a href="images/papers/McCabe2024_RoboSoft.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/10522010" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
     <div class="pub-item">
       <p class="pub-title mb-1">General-Purpose Foundation Models for Increased Autonomy in Robot-Assisted Surgery</p>
       <p class="pub-authors">Samuel Schmidgall, Ji Woong Kim, Alan Kuntz, Ahmed Ezzat Ghazi, Axel Krieger</p>
-      <p class="pub-venue mb-0"><em>Nature Machine Intelligence</em>, Vol. 6, No. 11, pp. 1275–1283, 2024</p>
+      <p class="pub-venue mb-1"><em>Nature Machine Intelligence</em>, Vol. 6, No. 11, pp. 1275–1283, 2024</p>
+      <div class="mt-1 d-flex flex-wrap gap-1">
+        <a href="https://www.nature.com/articles/s42256-024-00917-4" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
+      </div>
     </div>
 
     <div class="pub-item">
@@ -527,11 +613,12 @@
     <p class="year-heading">2023</p>
 
     <div class="pub-item" style="border-left-color: #866D4B; border-left-width: 5px;">
-      <p class="pub-title mb-1">Autonomous Medical Needle Steering In Vivo
-        <span class="award-badge">&#9733; Featured in Forbes</span>
-      </p>
+      <p class="pub-title mb-1">Autonomous Medical Needle Steering In Vivo</p>
       <p class="pub-authors">Alan Kuntz, Maxwell Emerson, Tayfun Efe Ertop, Inbar Fried, Mengyu Fu, Janine Hoelscher, Margaret Rox, Jason Akulian, Erin A. Gillaspie, Yueh Z. Lee, Fabien Maldonado, Robert J. Webster III, Ron Alterovitz</p>
       <p class="pub-venue mb-1"><em>Science Robotics</em>, Vol. 8, Issue 82, eadf7614, 2023</p>
+      <div class="pub-awards mt-1">
+        <span class="award-badge">&#9733; Featured in Forbes</span>
+      </div>
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Kuntz2023_ScienceRobotics.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
@@ -597,6 +684,9 @@
         <a href="images/papers/Smith2023_ISMR.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/10130276" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -618,11 +708,12 @@
     <p class="year-heading">2022</p>
 
     <div class="pub-item">
-      <p class="pub-title mb-1">Interactive-Rate Supervisory Control for Arbitrarily-Routed Multitendon Robots via Motion Planning
-        <span class="award-badge">&#9733; 2022 IEEE Access Best Video Award</span>
-      </p>
+      <p class="pub-title mb-1">Interactive-Rate Supervisory Control for Arbitrarily-Routed Multitendon Robots via Motion Planning</p>
       <p class="pub-authors">Michael Bentley, Caleb Rucker, Alan Kuntz</p>
       <p class="pub-venue mb-1"><em>IEEE Access</em>, Vol. 10, pp. 80999–81019, 2022</p>
+      <div class="pub-awards mt-1">
+        <span class="award-badge">&#9733; 2022 IEEE Access Best Video Award</span>
+      </div>
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="https://ieeexplore.ieee.org/document/9843990" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-external-link-alt me-1"></i>Publisher
@@ -660,6 +751,9 @@
         <a href="https://arxiv.org/abs/2110.04685" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-external-link-alt me-1"></i>arXiv
         </a>
+        <a href="https://ieeexplore.ieee.org/document/9812215" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -667,18 +761,22 @@
     <p class="year-heading">2021</p>
 
     <div class="pub-item">
-      <p class="pub-title mb-1">Toward Learning Context-Dependent Tasks from Demonstration for Tendon-Driven Surgical Robots
-        <span class="award-badge">&#9733; Best Paper Finalist</span>
-        <span class="award-badge">&#9733; Best Student Paper Finalist</span>
-      </p>
+      <p class="pub-title mb-1">Toward Learning Context-Dependent Tasks from Demonstration for Tendon-Driven Surgical Robots</p>
       <p class="pub-authors">Yixuan Huang, Michael Bentley, Tucker Hermans, Alan Kuntz</p>
       <p class="pub-venue mb-1"><em>International Symposium on Medical Robotics (ISMR)</em>, 2021</p>
+      <div class="pub-awards mt-1">
+        <span class="award-badge">&#9733; Best Paper Finalist</span>
+        <span class="award-badge">&#9733; Best Student Paper Finalist</span>
+      </div>
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Huang2021_ISMR.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
         <a href="https://arxiv.org/abs/2110.07789" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-external-link-alt me-1"></i>arXiv
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/9661534" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -694,15 +792,19 @@
         <a href="https://arxiv.org/abs/2110.06195" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-external-link-alt me-1"></i>arXiv
         </a>
+        <a href="https://ieeexplore.ieee.org/document/9661488" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
     <div class="pub-item">
-      <p class="pub-title mb-1">DeformerNet: A Deep Learning Approach to 3D Deformable Object Manipulation
-        <span class="award-badge">&#9733; Best Paper Honorable Mention</span>
-      </p>
+      <p class="pub-title mb-1">DeformerNet: A Deep Learning Approach to 3D Deformable Object Manipulation</p>
       <p class="pub-authors">Bao Thach, Alan Kuntz, Tucker Hermans</p>
       <p class="pub-venue mb-1"><em>RSS Workshop on Deformable Object Simulation in Robotics (DO-Sim)</em>, 2021</p>
+      <div class="pub-awards mt-1">
+        <span class="award-badge">&#9733; Best Paper Honorable Mention</span>
+      </div>
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Thach2021_RSS_WS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
@@ -735,6 +837,9 @@
         <a href="images/papers/Fried2021_ICRA.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/9561342" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -745,6 +850,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Chaeibakhsh2021_ICORES.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://www.scitepress.org/Link.aspx?doi=10.5220/0010226300360048" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -759,6 +867,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Emerson2020_ISER.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://link.springer.com/chapter/10.1007/978-3-030-71151-1_30" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -789,14 +900,18 @@
     </div>
 
     <div class="pub-item">
-      <p class="pub-title mb-1">Steerable Needle Trajectory Following in the Lung: Torsional Deadband Compensation and Full Pose Estimation with 5DOF Feedback for Needles Passing Through Flexible Endoscopes
-        <span class="award-badge">&#9733; Best Student Paper Finalist</span>
-      </p>
+      <p class="pub-title mb-1">Steerable Needle Trajectory Following in the Lung: Torsional Deadband Compensation and Full Pose Estimation with 5DOF Feedback for Needles Passing Through Flexible Endoscopes</p>
       <p class="pub-authors">Tayfun Efe Ertop, Maxwell Emerson, Margaret F. Rox, Josephine Granna, Robert J. Webster III, Fabien Maldonado, Erin Gillaspie, Michael Lester, Alan Kuntz, D. Caleb Rucker, Mengyu Fu, Janine Hoelscher, Inbar Fried, Ron Alterovitz</p>
       <p class="pub-venue mb-1"><em>ASME Dynamic Systems and Control Conference (DSCC)</em>, V001T05A003, 2020</p>
+      <div class="pub-awards mt-1">
+        <span class="award-badge">&#9733; Best Student Paper Finalist</span>
+      </div>
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Ertop2020_DSCC.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://asmedigitalcollection.asme.org/DSCC/proceedings/DSCC2020/84270/V001T05A003/1096468" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -831,6 +946,9 @@
         <a href="images/papers/Chen2020_ICRA.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/9197315" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -842,6 +960,9 @@
         <a href="images/papers/Kuntz2020_TMRB.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/9003266" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -852,6 +973,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Ferguson2020_TMRB.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/9084388" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -867,6 +991,9 @@
         <a href="images/papers/Kuntz2019_IROS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/8968172" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -877,6 +1004,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Niyaz2019_IROS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/8968575" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -899,6 +1029,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Fu2019_RSS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://www.roboticsproceedings.org/rss15/p57.html" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -928,6 +1061,9 @@
         <a href="images/papers/Niyaz2018_ISER.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://link.springer.com/chapter/10.1007/978-3-030-33950-0_1" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -938,6 +1074,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Fu2018_IROS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/8593407" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -961,6 +1100,9 @@
         <a href="images/papers/Kuntz2018_ICRA.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/8461135" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -975,6 +1117,9 @@
         <a href="images/papers/Kuntz2017_ISRR.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://link.springer.com/chapter/10.1007/978-3-030-28619-4_63" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -985,6 +1130,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Kuntz2017_IROS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/8206553" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -1025,6 +1173,9 @@
         <a href="images/papers/Kuntz2015_IROS.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://ieeexplore.ieee.org/document/7353829" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -1035,6 +1186,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Torres2015_ICRA.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/7139513" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -1050,6 +1204,9 @@
         <a href="images/papers/Sharp2014_SMS_2_Layout.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://iopscience.iop.org/article/10.1088/0964-1726/23/5/055021" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -1061,6 +1218,9 @@
         <a href="images/papers/Sharp2014_SMS_1_Bio.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
         </a>
+        <a href="https://iopscience.iop.org/article/10.1088/0964-1726/23/5/055020" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
+        </a>
       </div>
     </div>
 
@@ -1071,6 +1231,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Sharp2014_SSST.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://doi.org/10.1117/12.2045093" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
@@ -1096,6 +1259,9 @@
       <div class="mt-1 d-flex flex-wrap gap-1">
         <a href="images/papers/Manavi2013_AAAI.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
           <i class="fas fa-file-pdf me-1"></i>PDF
+        </a>
+        <a href="https://cdn.aaai.org/ocs/ws/ws1063/7136-30496-1-PB.pdf" class="btn btn-sm btn-outline-secondary py-0 px-2" style="font-size:0.78rem;" target="_blank">
+          <i class="fas fa-external-link-alt me-1"></i>Publisher
         </a>
       </div>
     </div>
